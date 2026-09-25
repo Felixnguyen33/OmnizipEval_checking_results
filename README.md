@@ -5,6 +5,7 @@ Each dataset has its own runner, consistency checker and installation instructio
 - [gsm8k/](gsm8k/README.md) — four-shot chat evaluation and strict boxed-answer scoring.
 - [truthfulqa/](truthfulqa/README.md) — MC1/MC2 likelihood evaluation.
 - [gpqa/](gpqa/README.md) — GPQA main and GPQA Diamond. Shared runs use `lm-eval` 0.4.9.1 and task version 2.0.
+- [worfbench/](worfbench/README.md) — eight-task WorfBench node precision, recall and F1.
 
 ```text
 gsm8k/
@@ -24,6 +25,13 @@ gpqa/
   README.md
   requirements.txt
   scripts/eval/          # launchers and task YAMLs actually used
+worfbench/
+  evaluate.py
+  node_eval.py
+  evaluator/
+  prompts/
+  gold_traj/
+  README.md
 ```
 
 For example, run `python gsm8k/evaluate.py --help` or

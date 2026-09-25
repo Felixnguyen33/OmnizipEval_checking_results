@@ -1,0 +1,402 @@
+[
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nLocate in your home directory all the text files (.txt) that contain the string \"Linux\", then count the total number of occurrences for the string across all these files.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find all .txt files containing \"Linux\" in the home directory\n2: execute bash code to count occurrences of \"Linux\" in the first file\n3: execute bash code to count occurrences of \"Linux\" in the second file\n4: execute bash code to count occurrences of \"Linux\" in the third file\n5: execute bash code to count occurrences of \"Linux\" in the fourth file\n6: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,6) (6,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_92",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nIdentify how many unique users have log entries in the /var/log/auth.log file on your system.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to inspect the format of log entries\n2: execute bash code to extract user IDs from the log file\n3: execute bash code to sort and remove duplicates to get unique user IDs\n4: execute bash code to count the number of unique user IDs\n5: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_95",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nFind the CPU usage percent (rounded to whole integers) of the most CPU-hungry process running in your Linux system.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list processes and their CPU usage\n2: execute bash code to sort processes by CPU usage in descending order and view the top entries\n3: take answer action\nEdge: (START,1) (1,2) (2,3) (3,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_181",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\n \n\nUse the Linux command line to count the total number of files and subdirectories located within a parent directory called 'Work'. Exclude any hidden files and directories.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to count the total number of files and subdirectories in the 'Work' directory excluding hidden ones\n2: take answer action\nEdge: (START,1) (1,2) (2,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_8",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\n \n\nCount the total sum of numbers that lie within the last 100 lines of the text file \"numbers.txt\", where each line of the file has a single whole number. Report the sum as your answer.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to retrieve the last 100 lines from the text file\n2: execute bash code to calculate the sum of these numbers\n3: take answer action\nEdge: (START,1) (1,2) (2,3) (3,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_105",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nFind out the number of directories under `/usr/bin` that contain files with executable permission in your Linux system. You should not count the directories that only contain files without executable permissions.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find directories under /usr/bin\n2: check for executable files in each directory\n3: take answer action\nEdge: (START,1) (1,2) (2,3) (3,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_155",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nFind and count all txt file names containing the word 'log' within the current directory and its subdirectories.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find all .txt files containing the word 'log'\n2: execute bash code to count these files\n3: take answer action\nEdge: (START,1) (1,2) (2,3) (3,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_19",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nGiven a process name, count the amount of memory (in megabytes) it consumes, rounding up to the nearest MB if necessary. You should compute this by finding and adding the individual RAM usages of all occurrences of the specified process.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list all processes\n2: execute bash code to filter processes by the specified name and exclude the grep process itself\n3: execute bash code to sum up the memory percentages\n4: execute bash code to check total available memory\n5: compute the memory usage in MB\n6: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,6) (6,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_167",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nUsing the `/var/log/syslog` file, count how many logs were created by the \"systemd\" daemon.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to grep for \"systemd\" logs from the `/var/log/syslog` file\n2: execute bash code to count the number of these logs\n3: take answer action\nEdge: (START,1) (1,2) (2,3) (3,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_158",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nFilter out all the empty lines and comments in configurations (.conf) files in the current directory, and find the most frequently appearing valid configuration directive.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list .conf files\n2: execute bash code to filter empty and commented lines\n3: execute bash code to extract configuration directives\n4: execute bash code to count and sort configuration directives\n5: execute bash code to find the most frequent directive\n6: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,6) (6,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_134",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\n \n\nYou need to determine the total amount of space occupied by HTML (\".html\") files in your home directory.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find the total size of all HTML files in the home directory\n2: take answer action\nEdge: (START,1) (1,2) (2,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_66",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nCalculate the total size of all directories, in Gigabytes (GB), directly under your home directory, round to nearest integer.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to navigate to the home directory\n2: execute bash code to list all directories under the home directory\n3: execute bash code to calculate the size of each directory\n4: sum up the sizes using Python\n5: convert the total size from kilobytes to gigabytes and round to the nearest integer using Python\n6: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,6) (6,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_141",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\n \n\nFind out the size of all the jpeg files in a set directory, formatted in an easy-to-understand human-readable string like '3MB'.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find all the jpeg files\n2: execute bash code to calculate the size of these files in a human-readable format\n3: execute bash code to filter out and get the total size in a simple format\n4: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_188",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nYou have a directory, `~/logs/`, filled with log files (.log extensions). You want to know how many times the phrase \"error\" appears in the log files of this directory regardless of its case.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list all log files in the directory\n2: execute bash code to count occurrences of\nEdge: (START,1) (1,2) (2,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_194",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nIdentify the total disk usage of all .txt files in the current directory. Include the usage of both visible and hidden .txt files.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list all .txt files in the current directory\n2: execute bash code to calculate the disk usage of these files\n3: execute bash code to sum up the total disk usage\n4: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_40",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nDetermine the total size of all the text files in your home directory and get the size in MB (Megabytes).The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to find all .txt files in the home directory\n2: execute bash code to calculate the size of each .txt file in Megabytes\n3: execute bash code to sum up all the sizes to get the total size in Megabytes\n4: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_193",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\n \n\nGrab a list of files in your current directory, excluding directories and other types of files (like named pipes, symbolic links, etc.), and find which file has the longest list of characters in its content. The output should be the filename and its character count, in the format: filename: count\".The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list files in the current directory\n2: execute bash code to calculate the character count for each file\n3: execute bash code to sort files by character count and pick the file with the maximum count\n4: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_77",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nSort lines in file alphabetically based on their second word, then find the unique content and output the count. The file is called \"data.txt\".The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to extract the second word from each line\n2: execute bash code to sort the extracted words\n3: execute bash code to find unique words and their count\n4: execute bash code to count the total number of unique entries\n5: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,5) (5,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_37",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nIdentify the top three largest files (by file size) in your home directory, excluding any subdirectories.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to list files in home directory sorted by size\n2: take answer action\nEdge: (START,1) (1,2) (2,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_1",
+        "category": "eval"
+    },
+    {
+        "source": "os",
+        "conversations": [
+            {
+                "role": "system",
+                "content": "You are a helpful task planner.\nFirst I will give you the task description and actions list you can take to finish the task, and your task is to plan a sequence of nodes which are subtasks to achieve the task. Each node of workflow is a subtask, and you can take actions to complete the subtask.\nAfter you construct the plan, since some subtasks may not be dependent on each other, while others may have dependencies, please convert these nodes of subtasks into a topology diagram based on the task relevance in the workflow. The Graph should start with START node, and end with END node. \nKeep your output in foramt:\nNode:\n1.{subtask_1}\n2.{subtask_2}\n...\nEdges:\n(START,1)\n...\n(n,END))"
+            },
+            {
+                "role": "user",
+                "content": "Now, I will start a new problem in a new OS. My problem is:\n\nCheck the current users logged into the system who have a bash shell. Print out those users' login, shell, and their home directory.The action list you can take: bash: execute some bash code, take bash action\nfinish: have finished the task, take finish action\nanswer: have got the answer to the question, take answer action"
+            },
+            {
+                "role": "assistant",
+                "content": "Node:\n1: execute bash code to view the content of /etc/passwd\n2: execute bash code to filter and view users with \"/bin/bash\"\n3: execute bash code to format and display the user info (login, home directory, shell)\n4: take answer action\nEdge: (START,1) (1,2) (2,3) (3,4) (4,END)"
+            }
+        ],
+        "target": "graph",
+        "id": "os_147",
+        "category": "eval"
+    }
+]
