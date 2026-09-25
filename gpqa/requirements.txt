@@ -1,0 +1,4 @@
+# Harness version recorded on the saved GPQA runs.
+lm-eval==0.4.11
+# vLLM is the backend those runs used. Install a GPU build that matches the local CUDA/PyTorch.
+# vllm

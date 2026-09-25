@@ -4,6 +4,7 @@ Each dataset has its own runner, consistency checker and installation instructio
 
 - [gsm8k/](gsm8k/README.md) — four-shot chat evaluation and strict boxed-answer scoring.
 - [truthfulqa/](truthfulqa/README.md) — MC1/MC2 likelihood evaluation.
+- [gpqa/](gpqa/README.md) — GPQA main and GPQA Diamond launchers (Qwen2.5 greedy and DeepSeek-R1 sampling).
 
 ```text
 gsm8k/
@@ -19,6 +20,10 @@ truthfulqa/
   check_pair.py
   requirements.txt
   README.md
+gpqa/
+  README.md
+  requirements.txt
+  scripts/eval/          # launchers and task YAMLs actually used
 ```
 
 For example, run `python gsm8k/evaluate.py --help` or
@@ -43,6 +48,12 @@ results, weights, credentials or machine-specific model paths.
 Before export, saved scores were independently recalculated for 34 complete GSM8K
 runs and 18 TruthfulQA task outputs. All reproduced under their respective original
 scorers. Reproducibility alone does not establish fairness.
+
+Twenty complete GPQA result files (main and Diamond) were checked the same way.
+Nineteen used the Qwen2.5 greedy 0-shot task. One Diamond file used DeepSeek-R1
+sampling with a single draw, and one earlier Diamond file used the stock
+`The answer is` parser, which scored boxed answers as zero. Details are in
+[gpqa/README.md](gpqa/README.md).
 
 ## Comparison policy
 
