@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """Rescore two checked_v1 output folders and compare their observed protocols."""
 import argparse
-import importlib.util
 import json
 import math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-spec = importlib.util.spec_from_file_location("scorer", ROOT / "tasks/gsm8k_checked/utils.py")
-scorer = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(scorer)
 
 
 def unwrap(value):
@@ -22,14 +17,16 @@ def audit(folder):
     manifest = json.loads((folder / "manifest.json").read_text())
     if manifest.get("status") != "complete":
         raise ValueError(f"{folder}: run is incomplete")
+    if manifest["protocol"]["dataset"] != 'truthfulqa':
+        raise ValueError("Expected truthfulqa outputs")
     result = json.loads((folder / "results.json").read_text())
     observations, scores = {}, {}
-    expected_tasks = {"gsm8k_checked"} if manifest["protocol"]["dataset"] == "gsm8k" else {"truthfulqa_mc1", "truthfulqa_mc2"}
+    expected_tasks = {"truthfulqa_mc1", "truthfulqa_mc2"}
     if set(result["results"]) != expected_tasks:
         raise ValueError("Unexpected or missing tasks")
     for task in sorted(expected_tasks):
         rows = [json.loads(line) for line in (folder / f"samples_{task}.jsonl").open()]
-        expected = 1319 if task == "gsm8k_checked" else 817
+        expected = 817
         if len(rows) != expected or len({r["doc_id"] for r in rows}) != expected:
             raise ValueError(f"{task}: missing or duplicate questions")
         observed, values = {}, []
@@ -38,20 +35,16 @@ def audit(folder):
             if question in observed:
                 raise ValueError("Duplicate question")
             observed[question] = (row["doc"], row["arguments"])
-            if task == "gsm8k_checked":
-                value = scorer.process_results(row["doc"], [unwrap(row["resps"])])["exact_match"]
-                metric = "exact_match"
+            logits = [float(unwrap(cell)[0]) for cell in row["resps"]]
+            labels = row["doc"][task.removeprefix("truthfulqa_") + "_targets"]["labels"]
+            if len(logits) != len(labels) or not all(math.isfinite(x) for x in logits):
+                raise ValueError("Invalid candidate likelihoods")
+            if task.endswith("mc1"):
+                value = labels[max(range(len(logits)), key=logits.__getitem__)]
             else:
-                logits = [float(unwrap(cell)[0]) for cell in row["resps"]]
-                labels = row["doc"][task.removeprefix("truthfulqa_") + "_targets"]["labels"]
-                if len(logits) != len(labels) or not all(math.isfinite(x) for x in logits):
-                    raise ValueError("Invalid candidate likelihoods")
-                if task.endswith("mc1"):
-                    value = labels[max(range(len(logits)), key=logits.__getitem__)]
-                else:
-                    weights = [math.exp(x - max(logits)) for x in logits]
-                    value = sum(w * label for w, label in zip(weights, labels)) / sum(weights)
-                metric = "acc"
+                weights = [math.exp(x - max(logits)) for x in logits]
+                value = sum(w * label for w, label in zip(weights, labels)) / sum(weights)
+            metric = "acc"
             if not math.isclose(value, row[metric], abs_tol=1e-10, rel_tol=0):
                 raise ValueError(f"{task}: per-question score mismatch")
             values.append(value)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Portable, explicit-input evaluation for GSM8K and TruthfulQA."""
+"""Portable gsm8k evaluation with explicit checkpoint and parent tokenizer inputs."""
 import argparse
 import hashlib
 import importlib.metadata
@@ -8,7 +8,6 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parent
-TRUTHFUL_REVISION = "741b8276f2d1982aa3d5b832d3ee81ed3b896490"
 
 
 def identity(value, revision):
@@ -32,7 +31,6 @@ def serializable(value):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--dataset", choices=["gsm8k", "truthfulqa"], required=True)
     p.add_argument("--model", required=True, help="Hub ID or local checkpoint directory")
     p.add_argument("--revision", help="Immutable Hub model commit")
     p.add_argument("--parent-tokenizer", required=True, help="Dense parent's Hub ID or local tokenizer directory")
@@ -59,27 +57,20 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.parent_tokenizer, revision=args.parent_revision,
                                                trust_remote_code=False)
     config = AutoConfig.from_pretrained(args.model, revision=args.revision, trust_remote_code=False)
-    if args.dataset == "gsm8k":
-        task_files = [ROOT / "tasks/gsm8k_checked/gsm8k_checked.yaml"]
-    else:
-        task_root = Path(lm_eval.__file__).parent / "tasks/truthfulqa"
-        task_files = [task_root / f"truthfulqa_{name}.yaml" for name in ("mc1", "mc2")]
+    task_files = [ROOT / "task.yaml"]
     tasks = [load_yaml(path, resolve_func=True, recursive=True) for path in task_files]
-    if args.dataset == "truthfulqa":
-        for task in tasks:
-            task["dataset_kwargs"] = {"revision": TRUTHFUL_REVISION}
     versions = {name: importlib.metadata.version(name) for name in
                 ("lm-eval", "transformers", "torch", "datasets", "accelerate", "tokenizers")}
     protocol = {
-        "id": "checked_v1", "dataset": args.dataset, "backend": "hf", "dtype": "bfloat16",
+        "id": "checked_v1", "dataset": 'gsm8k', "backend": "hf", "dtype": "bfloat16",
         "softmax_dtype": "float32", "batch_size": args.batch_size, "parallelize": args.parallelize,
-        "context_tokens": 8192, "max_generated_tokens": 4096 if args.dataset == "gsm8k" else None,
-        "num_fewshot": 4 if args.dataset == "gsm8k" else 0,
-        "chat_template": args.dataset == "gsm8k", "enable_thinking": False,
+        "context_tokens": 8192, "max_generated_tokens": 4096,
+        "num_fewshot": 4,
+        "chat_template": True, "enable_thinking": False,
         "cache": False, "seed": 0, "versions": versions, "parent_tokenizer": parent_id,
         "dataset_revision": tasks[0]["dataset_kwargs"]["revision"],
         "source_sha256": {"evaluate.py": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                           "utils.py": hashlib.sha256((ROOT / "tasks/gsm8k_checked/utils.py").read_bytes()).hexdigest()},
+                           "utils.py": hashlib.sha256((ROOT / "utils.py").read_bytes()).hexdigest()},
         "task_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in task_files},
     }
     args.output.mkdir(parents=True)
@@ -102,7 +93,7 @@ def main():
         log_samples=True, random_seed=0, numpy_random_seed=0, torch_random_seed=0, fewshot_random_seed=0,
     )
     samples = result.pop("samples")
-    expected = 1319 if args.dataset == "gsm8k" else 817
+    expected = 1319
     for task, rows in samples.items():
         if len(rows) != expected or len({r["doc_id"] for r in rows}) != expected:
             raise ValueError(f"{task}: incomplete or duplicate evaluation")
