@@ -4,7 +4,7 @@ Each dataset has its own runner, consistency checker and installation instructio
 
 - [gsm8k/](gsm8k/README.md) — four-shot chat evaluation and strict boxed-answer scoring.
 - [truthfulqa/](truthfulqa/README.md) — MC1/MC2 likelihood evaluation.
-- [gpqa/](gpqa/README.md) — GPQA main and GPQA Diamond launchers (Qwen2.5 greedy and DeepSeek-R1 sampling).
+- [gpqa/](gpqa/README.md) — GPQA main and GPQA Diamond. Shared runs use `lm-eval` 0.4.9.1 and task version 2.0.
 
 ```text
 gsm8k/

@@ -1,4 +1,5 @@
-# Harness version recorded on the saved GPQA runs.
-lm-eval==0.4.11
+# Same-dataset GPQA / GPQA Diamond runs (5-shot likelihood, task version 2.0).
+lm-eval==0.4.9.1
+# Later generative reruns in this folder were recorded with lm-eval==0.4.11.
 # vLLM is the backend those runs used. Install a GPU build that matches the local CUDA/PyTorch.
 # vllm

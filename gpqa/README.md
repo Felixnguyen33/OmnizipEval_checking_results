@@ -16,9 +16,21 @@ scripts/eval/tasks/gpqa_qwen25/
 scripts/eval/tasks/gpqa_deepseek_r1/
 ```
 
-Dataset: `Idavidrein/gpqa`. Main is 448 questions. Diamond is 198 questions.
-The saved runs used `lm-eval` 0.4.11 and the vLLM backend, chat template on,
-no system prompt, seeds `random=0`, `numpy=1234`, `torch=1234`, `fewshot=1234`.
+## Version
+
+The runs that use the same questions for every model are:
+
+| Item | Version |
+| --- | --- |
+| Dataset | `Idavidrein/gpqa` |
+| Main split | `gpqa_main`, task `gpqa_main_n_shot` **2.0**, 448 questions, 5-shot |
+| Diamond split | `gpqa_diamond`, task `gpqa_diamond_n_shot` **2.0**, 198 questions, 5-shot |
+| Harness | `lm-eval` **0.4.9.1** (commits `83e4d0b`, 16 files; `734a9ad`, 9 files) |
+| Score | multiple-choice `acc,none` |
+
+All 29 saved files use that dataset, those task versions, and `lm-eval` 0.4.9.1. No file truncates the split.
+
+A later generative rerun used `lm-eval` **0.4.11** and the vLLM backend (chat template on, no system prompt, seeds `random=0`, `numpy=1234`, `torch=1234`, `fewshot=1234`). Those files still have 448 and 198 questions, but they are not the 0.4.9.1 likelihood score.
 
 ## Two protocols
 
