@@ -1,0 +1,2 @@
+# Harness version used by this protocol. Install a GPU-compatible PyTorch first.
+lm-eval[hf]==0.4.12

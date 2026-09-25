@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.log
+*.jsonl
+*.safetensors
+*.bin
+*.pt
+*.pth
+outputs/
+results/
+logs/
+checkpoints/
+.cache/
